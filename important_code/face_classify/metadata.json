@@ -1,0 +1,128 @@
+{
+  "version" : "5.1",
+  "basicinfo" : {
+    "creation_time" : "20210928043427",
+    "model_file_type" : [ {
+      "env_name" : "PyTorch",
+      "file_type" : "others",
+      "name" : "model"
+    } ],
+    "name" : "face_classify_submit",
+    "description" : "",
+    "id" : "face_classify_submit",
+    "type" : "model",
+    "category" : "",
+    "version" : "1.0.0",
+    "group" : "",
+    "tags" : ""
+  },
+  "runtime" : [ {
+    "env" : {
+      "env_name" : "PyTorch",
+      "env_dependencies" : {
+        "hardware_dependencies" : [ {
+          "min_value" : "1",
+          "name" : "CPU",
+          "max_value" : "8"
+        }, {
+          "min_value" : "1GB",
+          "name" : "MEM",
+          "max_value" : "64GB"
+        }, {
+          "min_value" : "1",
+          "name" : "GPU",
+          "max_value" : "32"
+        } ],
+        "enable_gpu" : true
+      },
+      "env_version" : "PyTorch-1.4.0-python3.6"
+    },
+    "runtime_type" : "retrain",
+    "software_dependencies" : [ {
+      "installer" : "pip",
+      "python_requirements" : "requirements.txt"
+    } ]
+  }, {
+    "env" : {
+      "env_name" : "PyTorch",
+      "env_dependencies" : {
+        "hardware_dependencies" : [ {
+          "min_value" : "1",
+          "name" : "CPU",
+          "max_value" : "8"
+        }, {
+          "min_value" : "1GB",
+          "name" : "MEM",
+          "max_value" : "64GB"
+        }, {
+          "min_value" : "1",
+          "name" : "GPU",
+          "max_value" : "32"
+        } ],
+        "enable_gpu" : true
+      },
+      "env_version" : "PyTorch-1.4.0-python3.6"
+    },
+    "runtime_type" : "predict",
+    "software_dependencies" : [ {
+      "installer" : "pip",
+      "python_requirements" : "requirements.txt"
+    } ]
+  } ],
+  "methods" : [ {
+    "entry" : "face_classify_train.py",
+    "input_params" : [ {
+      "name" : "",
+      "default_dataset" : "",
+      "default_dataset_entity" : "",
+      "default_label" : ""
+    }, {
+      "name" : "",
+      "default_value" : ""
+    }, {
+      "name" : "",
+      "default_value" : ""
+    }, {
+      "name" : "",
+      "default_value" : ""
+    }, {
+      "not_null" : true,
+      "name" : "train_data",
+      "default_value" : "datasetInfo#55dbdacd32b74617aaa7d98af86fc7e2:faces_train*faces_train**4cb068c6e853471892c9a7fd1a0bcd4c*d0a5f270fcd94a11b4495664de8c8d99*",
+      "type" : "String"
+    }, {
+      "not_null" : true,
+      "name" : "epoch",
+      "default_value" : "500",
+      "type" : "String"
+    } ],
+    "name" : "face_classify_train",
+    "type" : "retrain",
+    "http_method" : "post",
+    "http_path" : "/retrain",
+    "input_datameta" : {
+      "label_index" : " ",
+      "name" : "d0a5f270fcd94a11b4495664de8c8d99",
+      "min_size" : "0",
+      "datasets" : "faces_train",
+      "label_dataset" : "faces_train"
+    },
+    "model_file_directory" : "model",
+    "invoke_type" : "async"
+  }, {
+    "entry" : "face_classify_train_predict.py:predict_data",
+    "http_method" : "post",
+    "name" : "face_classify_train_predict",
+    "model_file_directory" : "model",
+    "output_params" : [ ],
+    "input_datameta" : { },
+    "description" : "",
+    "http_path" : "/predict",
+    "input_params_demo" : "",
+    "type" : "predict",
+    "invoke_type" : "sync"
+  } ],
+  "datasets" : [ ],
+  "metrics" : [ ],
+  "config_meta" : [ ]
+}
